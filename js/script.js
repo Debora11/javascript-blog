@@ -6,6 +6,7 @@ document.getElementById('test-button').addEventListener('click', function(){
   */
  const titleClickHandler = function(event){
   console.log('Link was clicked!');
+  console.log('MouseEvent');
 
 
   /* remove class 'active' from all article links  */
@@ -20,7 +21,6 @@ document.getElementById('test-button').addEventListener('click', function(){
 
   /* add class 'active' to the correct article */
 }
-
 
 const links = document.querySelectorAll('.titles a');
 
