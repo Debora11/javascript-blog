@@ -24,10 +24,10 @@ const titleClickHandler = function (event) {
 
   console.log('clickedElement:', clickedElement);
 
-  clickedElement.classList.toggle('active');
+  clickedElement.classList.add('active');
 
   /* [DONE] remove class 'active' from all articles */
-  const activeArticles = document.querySelectorAll('.a.active');
+  const activeArticles = document.querySelectorAll('.post.active');
 
   for (let activeArticle of activeArticles) {
     activeArticle.classList.remove('active');
@@ -47,19 +47,18 @@ const titleClickHandler = function (event) {
 
   /* add class 'active' to the correct article */
   targetArticle.classList.add('active');
-}
-
-const links = document.querySelectorAll('.titles a');
-for (let link of links) {
-  link.addEventListener('click', titleClickHandler);
-
-  console.log(links);
-}
+};
 
 {
   const optArticleSelector = '.post',
     optTitleSelector = '.post-title',
     optTitleListSelector = '.titles';
+    optArticleTagsSelector = '.post-tags .list';
+
+  function clearTitleList() {
+    document.querySelector(optTitleListSelector).innerHTML = '';
+  }
+
 
   function generateTitleLinks() {
 
@@ -67,21 +66,20 @@ for (let link of links) {
 
     const titleList = document.querySelector(optTitleListSelector);
 
-    function clearMessages() {
-      document.getElementById('messages').innerHTML = 'optTitleListSelector';
-    }
+    clearTitleList();
 
     let html = '';
 
     /* for each article */
-    const articles = document.querySelectorAll(optTitleListSelector);
+    const articles = document.querySelectorAll(optAricleSelector);
+    console.log(articles);
 
     for (let article of articles) {
       console.log(article);
-    }
+  
 
     /* get the article id */
-    const articleId = clickedElement.getAttribute(id);
+    const articleId = article.getAttribute('id');
     console.log('articleId', articleId);
 
     /* find the title element */
@@ -101,4 +99,13 @@ for (let link of links) {
 }
 
   generateTitleLinks();
+}
+
+const links = document.querySelectorAll('.titles a');
+for (let link of links) {
+  link.addEventListener('click', titleClickHandler);
+  console.log(links);
+}
+
+
 
