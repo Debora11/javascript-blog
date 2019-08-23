@@ -236,9 +236,10 @@ function generateAuthors(){
       /* add generated code to html variable */
 
       html = html + linkHTML;
-  }
+  
     /* insert HTML of all the links into the authors wrapper */
-      authorsList.innerHTML = html;
+       authorsList.innerHTML = html;
+  }
 
   /* END LOOP: for every article: DONE */
 }
