@@ -6,6 +6,7 @@ const optArticleSelector = '.post',
         optArticleTagsSelector = '.post-tags .list',
         optArticleAuthorSelector = '.post-author',
         optArticleTagsLinkSelector = '.post-tags .list a';
+        optTagsListSelector = '.tags.list';
 
 const titleClickHandler = function(event) {
     event.preventDefault();
@@ -81,6 +82,8 @@ function generateTitleLinks(customSelector = '') {
 generateTitleLinks();
 
 function generateTags() {
+  /* [NEW] create a new variable allTags with an empty object */
+    let allTags = {};
 
     /* find all articles DONE: */
     const articles = document.querySelectorAll(optArticleSelector);
@@ -110,12 +113,36 @@ function generateTags() {
             /* add generated code to html variable */
             html = html + linkHTML;
 
-        }
+            /* [NEW] check if this link is NOT already in allTags */
+            if(!allTags.hasOwnProperty(tag)){
+            /* [NEW] add generated code to allTags object */
+            allTags[tag]=1;
+            } else {
+              allTags[tag]++;
+            }
 
+        }
         /* insert HTML of all the links into the tags wrapper */
         tagsList.innerHTML = html;
+
+        /* [NEW] find list of tags in right column */
+        const tagList = document.querySelector('.tags');
+
+        /* [NEW] create variable for all links HTML code */
+         let allTagsHTML = '';
+         /* [NEW] START LOOP: for each tag in allTags: */
+         for(let tag in allTags){
+        /* [NEW] generate code of a link and add it to allTagsHTML: */
+          allTagsHTML+= tag + '('+ allTags[tag] +') ';
+         }
+         /* [NEW] END LOOP: for each tag in allTags: */
+
+         /* [NEW] add html from allTagsHTML to tagList */
+          tagList.innerHTML = allTagsHTML;
+        console.log (allTags);
+        }
     }
-}
+
 
 generateTags();
 
@@ -182,7 +209,7 @@ function generateAuthors(){
 
   /* find all articles DONE */
 
-  const articles = document.querySelectorAll(optArticleAuthorSelector);
+  const articles = document.querySelectorAll(optArticleSelector);
     console.log(articles);
 
   for (let article of articles) {
@@ -204,7 +231,7 @@ function generateAuthors(){
 
       /* generate HTML of the link */
 
-      const linkHTML = '<li><a href="#author-' + author + '">' + author + '</a></li>';
+      const linkHTML = '<li><a href="#author-' + articleAuthors + '">' + articleAuthors + '</a></li>';
 
       /* add generated code to html variable */
 
@@ -281,4 +308,7 @@ function  addClickListenersToAuthors () {
   /* END LOOP: for each link */
 }
 addClickListenersToAuthors ();
+
+
+
 
