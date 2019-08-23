@@ -5,8 +5,8 @@ const optArticleSelector = '.post',
         optTitleListSelector = '.titles',
         optArticleTagsSelector = '.post-tags .list',
         optArticleAuthorSelector = '.post-author',
-        optArticleTagsLinkSelector = '.post-tags .list a';
-        optTagsListSelector = '.tags.list';
+        optArticleTagsLinkSelector = '.post-tags .list a',
+        optTagsListSelector = '.tags.list',
 
 const titleClickHandler = function(event) {
     event.preventDefault();
@@ -289,13 +289,12 @@ function authorClickHandler(event){
 
   /* execute function "generateAuthors" with article selector as argument */
 
-
+authorClickHandler('[data-author="' + articleAuthors + '"]');
 }
-authorClickHandler('[data-author="' + author + '"]');
 
 function  addClickListenersToAuthors () {
   /* find all links to tags */
-   const links = document.querySelectorAll()
+  // const links = document.querySelectorAll()
 
 
   /* START LOOP: for each link */
