@@ -83,6 +83,19 @@ function generateTitleLinks(customSelector = '') {
 generateTitleLinks();
 
 function calculateTagsParams(tags){
+  const params= {max: 0, min: 9999};
+
+  for(let tag in tags){
+    console.log(tag + ' is used ' + tags[tag] + ' times');
+    if(tags[tag] > params.max){
+      params.max = tags[tag];
+    }
+    if(tags[tag] > params.min){
+      params.min = tags[tag];
+    }
+  }
+  return params;
+}
 
 function generateTags() {
   /* [NEW] create a new variable allTags with an empty object */
@@ -148,7 +161,7 @@ function generateTags() {
         console.log (allTags);
         }
     }
-  }
+  
 generateTags();
 calculateTagsParams();
 
