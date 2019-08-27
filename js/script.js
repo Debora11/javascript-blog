@@ -82,6 +82,8 @@ function generateTitleLinks(customSelector = '') {
 
 generateTitleLinks();
 
+function calculateTagsParams(tags){
+
 function generateTags() {
   /* [NEW] create a new variable allTags with an empty object */
     let allTags = {};
@@ -108,19 +110,19 @@ function generateTags() {
 
         /* for each tag */
         for (let tag of articleTagsArray) {
-            /* generate HTML of the link */
-            const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+        /* generate HTML of the link */
+          const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
 
-            /* add generated code to html variable */
-            html = html + linkHTML;
+        /* add generated code to html variable */
+          html = html + linkHTML;
 
-            /* [NEW] check if this link is NOT already in allTags */
-            if(!allTags.hasOwnProperty(tag)){
-            /* [NEW] add generated code to allTags object */
-            allTags[tag]=1;
-            } else {
-              allTags[tag]++;
-            }
+        /* [NEW] check if this link is NOT already in allTags */
+          if(!allTags.hasOwnProperty(tag)){
+        /* [NEW] add generated code to allTags object */
+          allTags[tag]=1;
+          } else {
+            allTags[tag]++;
+          }
 
         }
         /* insert HTML of all the links into the tags wrapper */
@@ -128,6 +130,9 @@ function generateTags() {
 
         /* [NEW] find list of tags in right column */
         const tagList = document.querySelector('.tags');
+
+        const tagsParams= calculateTagsParams(allTags);
+        console.log('tagsParams', tagsParams)
 
         /* [NEW] create variable for all links HTML code */
          let allTagsHTML = '';
@@ -143,9 +148,9 @@ function generateTags() {
         console.log (allTags);
         }
     }
-
-
+  }
 generateTags();
+calculateTagsParams();
 
 function tagClickHandler(event) {
     /* prevent default action for this event */
