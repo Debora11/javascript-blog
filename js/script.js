@@ -92,7 +92,7 @@ function calculateTagsParams(tags){
     if(tags[tag] > params.max){
       params.max = tags[tag];
     }
-    if(tags[tag] > params.min){
+    if(tags[tag] < params.min){
       params.min = tags[tag];
     }
   }
@@ -100,7 +100,6 @@ function calculateTagsParams(tags){
 }
 
 function calculateTagClass (count, params){
-debugger;
   const normalizedCount = count - params.min;
   //const tagLinkHTML = calculateTagClass(allTags[tag], tagsParams);
   const normalizedMax = params.max - params.min;
@@ -166,18 +165,20 @@ function generateTags() {
          /* [NEW] START LOOP: for each tag in allTags: */
          for(let tag in allTags){
         /* [NEW] generate code of a link and add it to allTagsHTML: */
-           allTagsHTML+= '<li><a href="#tag-' + tag + '">' + tag + '</a></li>' + '('+ allTags[tag]+ ')';
+           allTagsHTML+= '<li><a class=" '+ optCloudClassPrefix + calculateTagClass(allTags[tag], tagsParams)+ ' "href="#tag-' + tag + '">' + tag + '</a>' + '('+ allTags[tag]+')</li>';
          }
        
-
           tagList.innerHTML = allTagsHTML;
         console.log (allTags);
         }
     }
+
   
 generateTags();
-calculateTagsParams();
-calculateTagClass(optCloudClassPrefix,classNumber);
+
+
+//calculateTagsParams();
+//calculateTagClass(optCloudClassPrefix,classNumber);
 
 function tagClickHandler(event) {
     /* prevent default action for this event */
