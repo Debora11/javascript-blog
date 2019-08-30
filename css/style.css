@@ -81,6 +81,11 @@ body {
   display: inline-block;
 }
 
+.list tags li {
+  display: inline-block;
+  list-style-type: none;
+}
+
 /* Authors */
 .authors li {
   margin-bottom: 12px;
@@ -106,5 +111,17 @@ body {
 
 .post-tags p {
   margin: 0 10px 0 0;
+}
+
+.tag-size-1 {
+  font-size: 20px;
+}
+
+.tag-size-5 {
+  font-size: 40px;
+}
+
+.tag-size-2 {
+  font-size: 30px;
 }
 /*# sourceMappingURL=style.css.map */
