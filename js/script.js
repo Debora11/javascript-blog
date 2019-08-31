@@ -5,12 +5,12 @@ const optArticleSelector = '.post',
         optTitleSelector = '.post-title',
         optTitleListSelector = '.titles',
         optArticleTagsSelector = '.post-tags .list',
-        optArticleAuthorSelector = '.post-author',
+        optArticleAuthorSelector = '.post-author .list',
         optArticleTagsLinkSelector = '.post-tags .list a',
         optTagsListSelector = '.tags.list',
         optCloudClassCount = '5',
         optCloudClassPrefix = 'tag-size-',
-        optAuthorsListSelector = '.authors.list';
+        optArticleAuthorsLinkSelector = '.post-authors .list a';
 
 const titleClickHandler = function(event) {
     event.preventDefault();
@@ -306,11 +306,11 @@ function generateAuthors(){
 
       html = html + linkHTML;
 
-      if(!allAuthors.hasOwnProperty(author)){
+      if(!allAuthors[articleAuthors]){
         /* [NEW] add generated code to allTags object */
-        allAuthors[author]=1;
+        allAuthors[articleAuthors]=1;
           } else {
-            allAuthors[author]++;
+            allAuthors[articleAuthors]++;
           }
   
     /* insert HTML of all the links into the authors wrapper */
@@ -320,7 +320,7 @@ function generateAuthors(){
   /* END LOOP: for every article: DONE */
 
   /* [NEW] find list of tags in right column */
-  const authorsList = document.querySelector('.authors');
+  const authorsListRight = document.querySelector(optAuthorsListSelector);
 
   const authorsParams= calculateTagsParams(allAuthors);
   console.log('authorsParams', authorsParams)
@@ -329,10 +329,11 @@ function generateAuthors(){
    let allAuthorsHTML = '';
    
   /* [NEW] generate code of a link and add it to allTagsHTML: */
+  debugger;
   allAuthorsHTML+= '<li><a class=" '+ optCloudClassPrefix + calculateAuthorClass(allAuthors[author], authorsParams)+ ' "href="#author-' + author + '">' + author + '</a>' + '('+ allAuthors[author]+')</li>';
    
  
-    authorList.innerHTML = allAuthors;
+    authorListRight.innerHTML = allAuthors;
   console.log (allAuthors);
   }
 }
@@ -386,9 +387,9 @@ function authorClickHandler(event){
 
 function  addClickListenersToAuthors () {
   /* find all links to tags */
-   //const authorsList = article.querySelectorAll(optArticleAuthorSelector);
+   const authorsList = article.querySelectorAll(optArticleAuthorsLinkSelector);
 
-   const links = document.querySelectorAll('a[href^="#author-"]');
+   //const links = document.querySelectorAll('a[href^="#author-"]');
 
   /* START LOOP: for each link */
   for (let link of links){
