@@ -10,7 +10,7 @@ const optArticleSelector = '.post',
         optTagsListSelector = '.tags.list',
         optCloudClassCount = '5',
         optCloudClassPrefix = 'tag-size-',
-        optArticleAuthorsLinkSelector = '.post-authors .list a';
+        optAuthorsListSelector = '.post-authors .list a';
 
 const titleClickHandler = function(event) {
     event.preventDefault();
@@ -386,7 +386,7 @@ function authorClickHandler(event){
 
 function  addClickListenersToAuthors () {
   /* find all links to tags */
-   const authorsList = article.querySelectorAll(optArticleAuthorsLinkSelector);
+   const authorsList = article.querySelectorAll(optAuthorsListSelector);
 
    //const links = document.querySelectorAll('a[href^="#author-"]');
 
