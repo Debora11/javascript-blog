@@ -4,7 +4,7 @@ const templates = {
   articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
   tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
   authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
-  //tagCloud: Handlebars.compile(document.querySelector('#template-tagCloudlink').innerHTML)
+  tagCloudLink: Handlebars.compile(document.querySelector('#template-tagCloudlink').innerHTML)
 
 }
 
@@ -180,26 +180,25 @@ function generateTags() {
 
 
         /* [NEW] create variable for all links HTML code */
-         let allTagsHTML = '';
-         //const allTagsData = {tags: []};
+         //let allTagsHTML = '';
+         const allTagsData = {tags: []};
 
          /* [NEW] START LOOP: for each tag in allTags: */
          for(let tag in allTags){
         /* [NEW] generate code of a link and add it to allTagsHTML: */
-           allTagsHTML+= '<li><a class=" '+ optCloudClassPrefix + calculateTagClass(allTags[tag], tagsParams)+ ' "href="#tag-' + tag + '">' + tag + '</a>' + '('+ allTags[tag]+')</li>';
-           //allTagsData.tags.push({
-           // tag: tag,
-           // count: allTags[tag],
-           // className: calculateTagClass(allTags[tag], tagsParams)
-          //});
+           //allTagsHTML+= '<li><a class=" '+ optCloudClassPrefix + calculateTagClass(allTags[tag], tagsParams)+ ' "href="#tag-' + tag + '">' + tag + '</a>' + '('+ allTags[tag]+')</li>';
+           allTagsData.tags.push({
+            tag: tag,
+           count: allTags[tag],
+           className: optCloudClassPrefix + calculateTagClass(allTags[tag], tagsParams)
+          });
          
           }
 
-          //tagList.innerHTML = templates.tagCloudLink(allTagsData);
-          //console.log (allTagsData);
+          tagList.innerHTML = templates.tagCloudLink(allTagsData);
+          console.log (allTagsData);
 
-          tagList.innerHTML = allTagsHTML;
-        console.log (allTags);
+  
        }
     }
 
